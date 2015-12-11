@@ -14,10 +14,6 @@ var loadLocale = function(app, locale) {
   foreigner.translations[locale] = app.__container__.lookupFactory(`${LOCALE_PREFIX}/${locale}:main`);
 };
 
-var registerHelpers = function() {
-  Ember.Handlebars.registerBoundHelper('t', t);
-};
-
 var createLocaleProperty = function(app) {
   app.reopen({
     locale: Ember.computed({
@@ -38,7 +34,6 @@ export default {
 
   initialize: function(container, app) {
     registerLibrary();
-    registerHelpers();
     createLocaleProperty(app);
 
     if (!app.get('locale')) {
